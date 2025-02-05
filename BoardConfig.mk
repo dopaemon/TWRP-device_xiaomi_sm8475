@@ -141,7 +141,7 @@ TW_USE_FSCRYPT_POLICY := 2
 ifdef DECRYPT_PLATFORM_VERSION
 PLATFORM_VERSION := $(DECRYPT_PLATFORM_VERSION)
 else
-PLATFORM_VERSION := 14
+PLATFORM_VERSION := 15
 endif
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -161,7 +161,7 @@ BUILD_BROKEN_USES_NETWORK := true
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
 ifeq ($(TW_DEVICE_VERSION),)
-TW_DEVICE_VERSION=14.0
+TW_DEVICE_VERSION=15.0
 endif
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -174,7 +174,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 ifeq ($(TW_DEFAULT_LANGUAGE),)
-TW_DEFAULT_LANGUAGE := zh_CN
+TW_DEFAULT_LANGUAGE := en_US
 endif
 TW_DEFAULT_BRIGHTNESS := 200
 TWRP_INCLUDE_LOGCAT := true
@@ -184,5 +184,24 @@ TW_EXCLUDE_APEX := true
 TW_HAS_EDL_MODE := false
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone27/temp"
 TW_BACKUP_EXCLUSIONS := /data/fonts,/data/adb/ap,/data/adb/ksu
-TW_FRAMERATE := 60
+TW_FRAMERATE := 120
 TW_AB_REC := true
+TW_ALLOW_REWRITE_SUPER_METADATA := true
+TW_NO_SCREEN_BLANK := true
+TW_LOAD_PREBUILT_MODULES := true
+TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
+TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.fingerprint=ro.vendor.build.fingerprint;ro.build.version.incremental"
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.allocator@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.memory@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.memory.token@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libnetutils.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdebuggerd_client.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so

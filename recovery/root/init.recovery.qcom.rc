@@ -119,3 +119,9 @@ service fix_touch /vendor/bin/fix_touch.sh
     user root
     group root
     seclabel u:r:recovery:s0
+
+on property:twrp.enable.fastcharge=true
+    start batterysecret
+    
+on property:twrp.enable.fastcharge=false
+    stop batterysecret
