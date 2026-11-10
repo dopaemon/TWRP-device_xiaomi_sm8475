@@ -9,6 +9,9 @@ include $(CLEAR_VARS)
         mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/vendor; \
         cp -rf $(LOCAL_PATH)/$(PRODUCT_RELEASE_NAME)/vendor $(TARGET_RECOVERY_ROOT_OUT)/; \
         cp -rf $(LOCAL_PATH)/$(PRODUCT_RELEASE_NAME)/system $(TARGET_RECOVERY_ROOT_OUT)/ > /dev/null 2>&1; \
+        rm -rf $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/modules/1.1; \
+        mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/modules/1.1; \
+        cp -a $(LOCAL_PATH)/kernel-6.6/modules/. $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/modules/1.1/; \
         cp -rf $(LOCAL_PATH)/modules.blocklist $(TARGET_RECOVERY_ROOT_OUT)/vendor/lib/modules/1.1/; \
         echo "calling depmod on miui_prebuilt"; \
         $(DEPMOD) -b $(TARGET_RECOVERY_ROOT_OUT)/vendor 1.1;

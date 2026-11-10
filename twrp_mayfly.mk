@@ -33,7 +33,7 @@ PRODUCT_MANUFACTURER := Xiaomi
 # TARGET_OTA_ASSERT_DEVICE := $(PRODUCT_RELEASE_NAME)
 
 # Kernel modules
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko fts_touch_spi.ko"
+TW_LOAD_VENDOR_MODULES := "$(strip $(shell cat $(DEVICE_PATH)/prebuilt/kernel-6.6/modules/modules.load | sed 's/$$/.ko/'))"
 
 # Haptic
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true

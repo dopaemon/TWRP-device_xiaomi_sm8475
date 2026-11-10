@@ -1,0 +1,12 @@
+{
+  "source_product_output": "/serverhive5/kernelpanix/PixelOS/out/target/product/mayfly",
+  "build_repository": "https://github.com/cupid-development/android_kernel_xiaomi_sm8450-build-6.6",
+  "build_commit": "76459babcb93f0335ab84bdb42e4aee43e2cade1",
+  "kernel_release": "6.6.144-android15-8-g6c93f14f14f5-4k",
+  "sha256": {
+    "kernel": "bbb1863028124dce8f6fe8f1e918d5dd71e2ccf2c8c4bbbddbafe728f4080201",
+    "boot.img": "e4b1871e205dcfc9c5005000662251acdfd0382ac9146e5456f62c589695fb94",
+    "vendor_boot.img": "2d30e67493e5a2777a364256550c3870119f29eca7e007a27201058b3e555bea",
+    "dtbo.img": "d7b20e8bbd8dff1099160c3baac7aab50d3958620407329b5b8fd9f264713bd7"
+  }
+}
