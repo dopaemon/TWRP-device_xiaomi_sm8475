@@ -56,52 +56,11 @@ void property_override(const std::string& name, const std::string& value) {
 	}
 }
 
-void model_property_override(const std::string& device, const std::string& name, const std::string& model) {
-	property_override("ro.build.product", device);
-	property_override("ro.product.device", device);
-	property_override("ro.product.odm.device", device);
-	property_override("ro.product.vendor.device", device);
-	property_override("ro.product.product.device", device);
-	property_override("ro.product.system_ext.device", device);
-	property_override("ro.product.system.device", device);
-	property_override("ro.product.bootimage.device", device);
-	property_override("ro.product.name", name);
-	property_override("ro.product.odm.name", name);
-	property_override("ro.product.vendor.name", name);
-	property_override("ro.product.product.name", name);
-	property_override("ro.product.system_ext.name", name);
-	property_override("ro.product.system.name", name);
-	property_override("ro.product.model", model);
-	property_override("ro.product.odm.model", model);
-	property_override("ro.product.vendor.model", model);
-	property_override("ro.product.product.model", model);
-	property_override("ro.product.system_ext.model", model);
-	property_override("ro.product.system.model", model);
-}
-
 void vendor_load_properties() {
 	property_override("ro.bootimage.build.date.utc", "1609430400");
 	property_override("ro.build.date.utc", "1609430400");
-	std::string sku = GetProperty("ro.boot.hardware.sku", "");
-	if (sku.empty()) {
-		sku = GetProperty("ro.boot.product.hardware.sku", "");
-	}
-	if (sku == "mayfly") {
-		model_property_override("mayfly", "mayfly", "Xiaomi 12S");
-	} else if (sku == "cupid") {
-		model_property_override("cupid", "cupid", "Xiaomi 12");
-	} else if (sku == "zeus") {
-		model_property_override("zeus", "zeus", "Xiaomi 12 Pro");
-	} else if (sku == "unicorn") {
-		model_property_override("unicorn", "unicorn", "Xiaomi 12S Pro");
-	} else if (sku == "thor") {
-		model_property_override("thor", "thor", "Xiaomi 12S Ultra");
-	} else if (sku == "diting") {
-		model_property_override("diting", "diting", "Redmi K50 Ultra");
-	} else if (sku == "ditingp") {
-		model_property_override("diting", "ditingp", "Xiaomi 12T Pro");
-	} else {
-		model_property_override("unknow", "unknow", "unknow name");
-		return;
-	}
+	// The device codename/model is fixed at build time: each lunch target
+	// (twrp_mayfly, twrp_cupid, twrp_zeus, twrp_unicorn) bakes its own
+	// ro.product.*.device/model into prop.default via PRODUCT_DEVICE and
+	// PRODUCT_MODEL, so nothing is detected or overridden at runtime.
 }

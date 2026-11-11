@@ -139,8 +139,8 @@ REAL_DEVICE_PATH := $(strip $(patsubst $(CURDIR)/%,%,$(realpath $(DEVICE_PATH)))
 ifeq ($(REAL_DEVICE_PATH),)
     REAL_DEVICE_PATH := $(DEVICE_PATH)
 endif
-TARGET_INIT_VENDOR_LIB := //$(REAL_DEVICE_PATH):libinit_mayfly
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mayfly
+TARGET_INIT_VENDOR_LIB := //$(REAL_DEVICE_PATH):libinit_xiaomi_sm8450
+TARGET_RECOVERY_DEVICE_MODULES := libinit_xiaomi_sm8450
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
 # Recovery
