@@ -41,9 +41,16 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 # VNDK API
 PRODUCT_TARGET_VNDK_VERSION := 31
 
+REAL_DEVICE_PATH := $(strip $(patsubst $(CURDIR)/%,%,$(realpath $(DEVICE_PATH))))
+ifeq ($(REAL_DEVICE_PATH),)
+    REAL_DEVICE_PATH := $(DEVICE_PATH)
+endif
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(DEVICE_PATH)
+    $(DEVICE_PATH) \
+    $(REAL_DEVICE_PATH) \
+    device/xiaomi/sm8450-common
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
