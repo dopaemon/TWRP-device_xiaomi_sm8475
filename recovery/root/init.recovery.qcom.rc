@@ -102,18 +102,12 @@ service vendor.qseecomd /vendor/bin/qseecomd
     seclabel u:r:recovery:s0
 
 service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
-    # The ROM's real /vendor may be mounted over the ramdisk copy when this
-    # starts; its blobs need the vendor libc++, so search /vendor/lib64 first.
-    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
 service keymaster-4-1 /vendor/bin/hw/android.hardware.keymaster@4.1-service-qti
-    # The ROM's real /vendor may be mounted over the ramdisk copy when this
-    # starts; its blobs need the vendor libc++, so search /vendor/lib64 first.
-    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64
     user root
     group root
     disabled
