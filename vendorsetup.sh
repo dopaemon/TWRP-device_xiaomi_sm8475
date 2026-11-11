@@ -4,11 +4,10 @@ export TARGET_ARCH="arm64-v8a"
 export OF_MAINTAINER=KernelPanix
 
 # Build environment stuffs
-export FOX_BUILD_DEVICE="Xiaomi 12S"
 export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-export TARGET_DEVICE_ALT="mayfly"
-export FOX_TARGET_DEVICES="mayfly"
+export TARGET_DEVICE_ALT="mayfly,cupid,zeus,unicorn"
+export FOX_TARGET_DEVICES="mayfly,cupid,zeus,unicorn"
 export BUILD_USERNAME="nobody"
 export BUILD_HOSTNAME="android-build"
 
@@ -27,8 +26,6 @@ export OF_STATUS_INDENT_LEFT=48
 export OF_STATUS_INDENT_RIGHT=48
 export OF_ALLOW_DISABLE_NAVBAR=0
 export OF_CLOCK_POS=0
-export OF_SCREEN_H=2340
-export OF_STATUS_H=80
 
 # Device stuff
 export OF_KEEP_FORCED_ENCRYPTION=1

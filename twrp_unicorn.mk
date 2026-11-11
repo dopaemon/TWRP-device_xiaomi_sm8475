@@ -14,26 +14,29 @@
 # limitations under the License.
 #
 
+DEVICE_PATH ?= $(strip $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST)))))
+ifeq ($(wildcard $(DEVICE_PATH)/device.mk),)
 DEVICE_PATH := device/xiaomi/mayfly
+endif
 
-# Inherit from device.mk configuration
+# Inherit device.mk configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
 
 # Release name
 PRODUCT_RELEASE_NAME := unicorn
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := mayfly
+PRODUCT_DEVICE := unicorn
 PRODUCT_NAME := twrp_unicorn
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Xiaomi 12S Pro
 PRODUCT_MANUFACTURER := Xiaomi
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := $(PRODUCT_RELEASE_NAME)
+# TARGET_OTA_ASSERT_DEVICE := $(PRODUCT_RELEASE_NAME)
 
 # Kernel modules
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko fts_touch_spi.ko"
+TW_LOAD_VENDOR_MODULES := "$(strip $(shell cat $(DEVICE_PATH)/prebuilt/kernel-6.6/modules/modules.load | sed 's/$$/.ko/'))"
 
 # Haptic
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true

@@ -43,6 +43,20 @@ TARGET_BOARD_PLATFORM := xiaomi_sm8475
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno730
 QCOM_BOARD_PLATFORMS += xiaomi_sm8475
 
+DEVICE_PATH ?= $(strip $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST)))))
+ifeq ($(wildcard $(DEVICE_PATH)/device.mk),)
+DEVICE_PATH := device/xiaomi/mayfly
+endif
+
+# Screen specifications
+ifeq ($(filter zeus unicorn,$(TARGET_DEVICE)),$(TARGET_DEVICE))
+    OF_SCREEN_H := 3200
+    OF_STATUS_H := 100
+else
+    OF_SCREEN_H := 2400
+    OF_STATUS_H := 80
+endif
+
 # Kernel
 VENDOR_CMDLINE := "video=vfb:640x400,bpp=32,memsize=3072000 disable_dma32=on bootconfig reboot=panic_warm androidboot.init_fatal_reboot_target=recovery androidboot.selinux=permissive"
 BOARD_KERNEL_PAGESIZE := 4096

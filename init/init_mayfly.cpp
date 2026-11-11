@@ -82,9 +82,16 @@ void model_property_override(const std::string& device, const std::string& name,
 void vendor_load_properties() {
 	property_override("ro.bootimage.build.date.utc", "1609430400");
 	property_override("ro.build.date.utc", "1609430400");
-	const std::string sku = GetProperty("ro.boot.hardware.sku", "");
+	std::string sku = GetProperty("ro.boot.hardware.sku", "");
+	if (sku.empty()) {
+		sku = GetProperty("ro.boot.product.hardware.sku", "");
+	}
 	if (sku == "mayfly") {
 		model_property_override("mayfly", "mayfly", "Xiaomi 12S");
+	} else if (sku == "cupid") {
+		model_property_override("cupid", "cupid", "Xiaomi 12");
+	} else if (sku == "zeus") {
+		model_property_override("zeus", "zeus", "Xiaomi 12 Pro");
 	} else if (sku == "unicorn") {
 		model_property_override("unicorn", "unicorn", "Xiaomi 12S Pro");
 	} else if (sku == "thor") {
