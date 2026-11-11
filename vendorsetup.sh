@@ -6,8 +6,10 @@ export OF_MAINTAINER=KernelPanix
 # Build environment stuffs
 export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-export TARGET_DEVICE_ALT="mayfly,cupid,zeus,unicorn"
-export FOX_TARGET_DEVICES="mayfly,cupid,zeus,unicorn"
+# One image per device: do NOT set TARGET_DEVICE_ALT / FOX_TARGET_DEVICES here.
+# Each build (twrp_mayfly, twrp_cupid, twrp_zeus, twrp_unicorn) only accepts
+# its own codename, both in the zip installer and for ROM device asserts.
+unset TARGET_DEVICE_ALT FOX_TARGET_DEVICES
 export BUILD_USERNAME="nobody"
 export BUILD_HOSTNAME="android-build"
 

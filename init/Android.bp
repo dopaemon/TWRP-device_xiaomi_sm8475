@@ -1,5 +1,5 @@
 cc_library_static {
-    name: "libinit_mayfly",
+    name: "libinit_xiaomi_sm8450",
     header_libs: [
         "libbase_headers",
         "libcutils_headers",
@@ -10,6 +10,6 @@ cc_library_static {
     static_libs: [
         "libbase",
     ],
-    srcs: ["init_mayfly.cpp"],
+    srcs: ["init_xiaomi_sm8450.cpp"],
     recovery_available: true,
 }
