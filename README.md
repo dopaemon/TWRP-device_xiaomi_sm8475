@@ -13,15 +13,16 @@ Linux Kernel 6.6 (GKI) + Vendor DLKM.
 
 ## Cài đặt cấu trúc thư mục
 
-Để build cho từng thiết bị, chỉ cần clone hoặc tạo symlink trong `device/xiaomi/`:
+Thư mục gốc của device tree là `device/xiaomi/sm8450-common`. Tạo symlink cho cả 4 thiết bị:
 
 ```sh
 cd device/xiaomi
 
-# Clone cùng repo hoặc tạo symlink trỏ về mayfly:
-ln -s mayfly cupid
-ln -s mayfly zeus
-ln -s mayfly unicorn
+# Tạo symlink cho từng thiết bị trỏ về sm8450-common:
+ln -s sm8450-common mayfly
+ln -s sm8450-common cupid
+ln -s sm8450-common zeus
+ln -s sm8450-common unicorn
 ```
 
 ## Cách build

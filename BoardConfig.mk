@@ -45,7 +45,7 @@ QCOM_BOARD_PLATFORMS += xiaomi_sm8475
 
 DEVICE_PATH ?= $(strip $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST)))))
 ifeq ($(wildcard $(DEVICE_PATH)/device.mk),)
-DEVICE_PATH := device/xiaomi/mayfly
+DEVICE_PATH := device/xiaomi/sm8450-common
 endif
 
 # Screen specifications
@@ -135,7 +135,11 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 #Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_mayfly
+REAL_DEVICE_PATH := $(strip $(patsubst $(CURDIR)/%,%,$(realpath $(DEVICE_PATH))))
+ifeq ($(REAL_DEVICE_PATH),)
+    REAL_DEVICE_PATH := $(DEVICE_PATH)
+endif
+TARGET_INIT_VENDOR_LIB := //$(REAL_DEVICE_PATH):libinit_mayfly
 TARGET_RECOVERY_DEVICE_MODULES := libinit_mayfly
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
 
