@@ -20,9 +20,41 @@ cc_library {
     static_libs: ["libgptutils.xiaomi_sm8475"],
 }
 
+// The boot HAL is built from a local copy of libboot_control_qti.cpp so that
+// A/B partitions living on the UFS boot LUNs do not abort the slot switch.
 cc_library_shared {
     name: "android.hardware.boot@1.2-impl-qti",
     stem: "android.hardware.boot@1.0-impl-1.2-qti",
-    defaults: ["android.hardware.boot@1.2-impl-qti_defaults"],
-    static_libs: ["libgptutils.xiaomi_sm8475"],
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    vendor: true,
+    recovery_available: true,
+    owner: "qti",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    srcs: [
+        ":android.hardware.boot@1.2-impl-qti_src",
+        "libboot_control_qti.cpp",
+    ],
+    header_libs: ["libboot_control_qti_headers"],
+    shared_libs: [
+        "android.hardware.boot@1.0",
+        "android.hardware.boot@1.1",
+        "android.hardware.boot@1.2",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "libz",
+    ],
+    static_libs: [
+        "libboot_control",
+        "libbootloader_message_vendor",
+        "libfstab",
+        "libgptutils.xiaomi_sm8475",
+    ],
 }
