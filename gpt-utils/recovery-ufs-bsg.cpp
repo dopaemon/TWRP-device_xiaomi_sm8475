@@ -102,6 +102,7 @@ static int ufs_bsg_ioctl(int fd, struct ufs_bsg_request *req,
     int ret;
     struct sg_io_v4 sg_io;
 
+    memset(&sg_io, 0, sizeof(sg_io));
     sg_io.guard = 'Q';
     sg_io.protocol = BSG_PROTOCOL_SCSI;
     sg_io.subprotocol = BSG_SUB_PROTOCOL_SCSI_TRANSPORT;
@@ -159,6 +160,9 @@ static int ufs_query_attr(int fd, __u32 value,
     struct ufs_bsg_reply rsp;
     enum bsg_ioctl_dir dir = BSG_IOCTL_DIR_FROM_DEV;
     int ret = 0;
+
+    memset(&req, 0, sizeof(req));
+    memset(&rsp, 0, sizeof(rsp));
 
     if (opcode == QUERY_REQ_OP_WRITE_DESC || opcode == QUERY_REQ_OP_WRITE_ATTR)
         dir = BSG_IOCTL_DIR_TO_DEV;
