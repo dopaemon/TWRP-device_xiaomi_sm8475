@@ -14,7 +14,10 @@
 # limitations under the License.
 #
 
+DEVICE_PATH ?= $(strip $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST)))))
+ifeq ($(wildcard $(DEVICE_PATH)/device.mk),)
 DEVICE_PATH := device/xiaomi/mayfly
+endif
 
 # Inherit from device.mk configuration
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
