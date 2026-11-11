@@ -81,6 +81,8 @@ BOARD_USES_RECOVERY_AS_BOOT := false
 else
 BOARD_USES_RECOVERY_AS_BOOT := $(TW_RECOVERY_AS_BOOT)
 endif
+# Keep the kernel out of recovery.img: tested on mayfly on 2026-11-11, the
+# bootloader drops to fastboot when the v4 recovery image carries a kernel.
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 AB_OTA_UPDATER := true
