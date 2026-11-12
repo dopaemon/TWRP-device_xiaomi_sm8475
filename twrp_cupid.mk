@@ -42,6 +42,8 @@ TW_LOAD_VENDOR_MODULES := "$(strip $(shell cat $(DEVICE_PATH)/prebuilt/kernel-6.
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+# aw8697 haptics make the UI lag on cupid: build without haptics
+TW_NO_HAPTICS := true
 
 # Theme
 TW_STATUS_ICONS_ALIGN := center
